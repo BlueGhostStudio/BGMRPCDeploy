@@ -1,0 +1,15 @@
+#!/bin/sh
+
+grparg=
+objname=$1
+if [ -n "$3" ]
+then
+	grparg="-g $3"
+	#objname="${3}::${objname}"
+fi
+
+app=$(basename `pwd`)
+
+BGMRPCCtrl createObject $objname $2 -a $app $grparg -p .
+
+#BGMRPCCtrl createObject ManuscriptStorage ManuscriptStorage -a Handwritten -g blueghost -p py/Handwritten/Manuscript

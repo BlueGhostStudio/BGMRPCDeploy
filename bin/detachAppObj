@@ -1,0 +1,13 @@
+#!/bin/sh
+
+grparg=
+objname=$1
+if [ -n "$2" ]
+then
+	objname="${2}::${objname}"
+fi
+
+BGMRPCCtrl detachObject $objname
+
+#BGMRPCCtrl createObject $objname $2 -a $app $grparg -p .
+#BGMRPCCtrl createObject ManuscriptStorage ManuscriptStorage -a Handwritten -g blueghost -p py/Handwritten/Manuscript

@@ -1,0 +1,29 @@
+#!/bin/sh
+
+grp=
+while getopts "g:" arg
+do
+	case $arg in
+		g)
+			grp=$OPTARG
+			;;
+		?)
+			echo "unkonw argument"
+			exit 1
+			;;
+	esac
+done
+
+echo $grp
+shift $((OPTIND-1))
+echo $@
+
+apppath=$@
+
+if [ -n "$apppath" ]
+then
+	cd $apppath
+fi
+
+./stop.sh $grp
+
