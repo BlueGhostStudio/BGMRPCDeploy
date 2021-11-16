@@ -1,11 +1,13 @@
 cmake_minimum_required(VERSION 3.18)
 
+project(Deploy)
+
 include(cmake/BGMRPC.cmake)
 
 install(
   DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/bin
   DESTINATION ${BGMRPC_REMOTE}
-  COMPONENT BGMRPC_remote_deplay
+  COMPONENT BGMRPC_remote_deploy
   PATTERN "bin/*" PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ
                               GROUP_EXECUTE GROUP_READ WORLD_EXECUTE WORLD_READ)
 
@@ -27,4 +29,4 @@ install(
 install(
   DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/etc
   DESTINATION ${BGMRPC_REMOTE}
-  COMPONENT BGMRPC_remote_deplay)
+  COMPONENT BGMRPC_remote_deploy)
