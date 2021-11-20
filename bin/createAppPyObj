@@ -1,0 +1,14 @@
+#!/bin/sh
+
+grparg=
+objname=$1
+if [ -n "$3" ]
+then
+	grparg="-g $3"
+	#objname="${3}::${objname}"
+fi
+
+app=$(basename `pwd`)
+
+#BGMRPCCtrl createObject $objname PythonInterface -a $app -S $2 $grparg
+BGMRPCCtrl-qt5 createObject $objname PythonInterface -a $app $grparg -S $2
