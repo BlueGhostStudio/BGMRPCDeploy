@@ -4,29 +4,41 @@ project(Deploy)
 
 include(cmake/BGMRPC.cmake)
 
+add_custom_target(
+  Deploy ALL
+  COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_LIST_DIR}/etc
+          ${CMAKE_CURRENT_BINARY_DIR}/etc
+  COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_LIST_DIR}/bin
+          ${CMAKE_CURRENT_BINARY_DIR}/bin)
+
+target_sources(
+  Deploy
+  PRIVATE bin/createAppJsObj
+          bin/createAppObj
+          bin/createAppPyObj
+          bin/detachAppObj
+          bin/restartApp
+          bin/startApp
+          bin/stopApp
+          etc/BGMRPC.conf
+          etc/JsModules.conf)
+
 install(
-  DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/bin
+  DIRECTORY bin
   DESTINATION ${BGMRPC_REMOTE}
   COMPONENT BGMRPC_remote_deploy
-  PATTERN "bin/*" PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ
-                              GROUP_EXECUTE GROUP_READ WORLD_EXECUTE WORLD_READ)
-
-#install(
-#  DIRECTORY logs apps data
-#  DESTINATION ${BGMRPC_REMOTE}
-#  DIRECTORY_PERMISSIONS
-#    OWNER_READ
-#    OWNER_WRITE
-#    OWNER_EXECUTE
-#    GROUP_READ
-#    GROUP_WRITE
-#    GROUP_EXECUTE
-#    WORLD_READ
-#    WORLD_WRITE
-#    WORLD_EXECUTE
-#  COMPONENT BGMRPC_remote_deplay)
+  PATTERN
+    "bin/*"
+    PERMISSIONS
+      OWNER_EXECUTE
+      OWNER_WRITE
+      OWNER_READ
+      GROUP_EXECUTE
+      GROUP_READ
+      WORLD_EXECUTE
+      WORLD_READ)
 
 install(
-  DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/etc
+  DIRECTORY etc
   DESTINATION ${BGMRPC_REMOTE}
   COMPONENT BGMRPC_remote_deploy)
