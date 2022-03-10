@@ -2,11 +2,25 @@
 
 grparg=
 objname=$1
+js=$2
+NAPF=
 
-if [ -n "$3" ]
+shift $((OPTIND+1))
+
+while getopts "A" arg
+do
+	case $arg in
+		A)
+			NAPF="-A"
+			;;
+	esac
+done
+
+shift $((OPTIND-1))
+if [ -n "$1" ]
 then
-	grparg="-g $3"
+	grparg="-g $1"
 fi
 
 app=$(basename `pwd`)
-BGMRPCCtrl createObject $objname JsPlugin2 -a $app $grparg -j $2
+BGMRPCCtrl createObject $objname JsPlugin2 -a $app $NAPF $grparg -j $js

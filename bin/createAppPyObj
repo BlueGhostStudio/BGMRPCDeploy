@@ -2,13 +2,25 @@
 
 grparg=
 objname=$1
-if [ -n "$3" ]
+py=$2
+NAPF=
+
+shift $((OPTIND+1))
+
+while getopts "A" arg
+do
+	case $arg in
+		A)
+			NAPF="-A"
+			;;
+	esac
+done
+
+shift $((OPTIND-1))
+if [ -n "$1" ]
 then
-	grparg="-g $3"
-	#objname="${3}::${objname}"
+	grparg="-g $1"
 fi
 
 app=$(basename `pwd`)
-
-#BGMRPCCtrl createObject $objname PythonInterface -a $app -S $2 $grparg
-BGMRPCCtrl-qt5 createObject $objname PythonInterface -a $app $grparg -S $2
+BGMRPCCtrl-qt5 createObject $objname PythonInterface -a $app $NAPF $grparg -S $py
