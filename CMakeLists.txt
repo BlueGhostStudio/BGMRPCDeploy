@@ -11,17 +11,17 @@ add_custom_target(
   COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_LIST_DIR}/bin
           ${CMAKE_CURRENT_BINARY_DIR}/bin)
 
-target_sources(
-  Deploy
-  PRIVATE bin/createAppJsObj
-          bin/createAppObj
-          bin/createAppPyObj
-          bin/detachAppObj
-          bin/restartApp
-          bin/startApp
-          bin/stopApp
-          etc/BGMRPC.conf
-          etc/JsModules.conf)
+#target_sources(
+#  Deploy
+#  PRIVATE bin/createAppJsObj
+#          bin/createAppObj
+#          bin/createAppPyObj
+#          bin/detachAppObj
+#          bin/restartApp
+#          bin/startApp
+#          bin/stopApp
+#          etc/BGMRPC.conf
+#          etc/JsModules.conf)
 
 install(
   DIRECTORY bin
