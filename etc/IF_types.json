@@ -1,0 +1,14 @@
+{
+    "JS": {
+        "src": {
+            "opt": "-j",
+            "hasArg": true
+        }
+    },
+    "PY": {
+        "src": {
+            "opt": "-S",
+            "hasArg": true
+        }
+    }
+}
