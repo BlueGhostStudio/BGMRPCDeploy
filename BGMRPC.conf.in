@@ -1,0 +1,9 @@
+[server]
+#ip=127.0.0.1
+port=8000
+
+[path]
+root=@CMAKE_INSTALL_PREFIX@/BGMRPC
+installDir=@CMAKE_INSTALL_PREFIX@/BGMRPC
+bin=@CMAKE_INSTALL_PREFIX@/BGMRPC/bin
+interfaces=@CMAKE_INSTALL_PREFIX@/BGMRPC/interfaces

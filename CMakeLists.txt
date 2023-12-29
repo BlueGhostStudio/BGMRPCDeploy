@@ -6,22 +6,20 @@ include(cmake/BGMRPC.cmake)
 
 add_custom_target(
   Deploy ALL
-  COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_LIST_DIR}/etc
-          ${CMAKE_CURRENT_BINARY_DIR}/etc
-  COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_LIST_DIR}/bin
-          ${CMAKE_CURRENT_BINARY_DIR}/bin)
+  SOURCES BGMRPC.conf.in
+          JsModules.conf.in
+          bin/createAppJsObj
+          bin/createAppObj
+          bin/createAppPyObj
+          bin/detachAppObj
+          bin/restartApp
+          bin/startApp
+          bin/stopApp
+          etc/IF_types.json)
 
-#target_sources(
-#  Deploy
-#  PRIVATE bin/createAppJsObj
-#          bin/createAppObj
-#          bin/createAppPyObj
-#          bin/detachAppObj
-#          bin/restartApp
-#          bin/startApp
-#          bin/stopApp
-#          etc/BGMRPC.conf
-#          etc/JsModules.conf)
+configure_file(BGMRPC.conf.in ${CMAKE_CURRENT_BINARY_DIR}/etc/BGMRPC.conf @ONLY)
+configure_file(JsModules.conf.in ${CMAKE_CURRENT_BINARY_DIR}/etc/JsModules.conf
+               @ONLY)
 
 install(
   DIRECTORY bin
@@ -40,5 +38,10 @@ install(
 
 install(
   DIRECTORY etc
+  DESTINATION ${BGMRPC_REMOTE}/${CMAKE_INSTALL_DATADIR}
+  COMPONENT BGMRPC_remote_deploy)
+
+install(
+  DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/etc
   DESTINATION ${BGMRPC_REMOTE}/${CMAKE_INSTALL_DATADIR}
   COMPONENT BGMRPC_remote_deploy)
