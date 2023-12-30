@@ -1,9 +1,16 @@
 [server]
 #ip=127.0.0.1
 port=8000
+#ssl_certificate=
+#server/ssl_certificate_key
+
+[access]
+user=nobody
+group=nobody
 
 [path]
-root=@CMAKE_INSTALL_PREFIX@/BGMRPC
-installDir=@CMAKE_INSTALL_PREFIX@/BGMRPC
-bin=@CMAKE_INSTALL_PREFIX@/BGMRPC/bin
-interfaces=@CMAKE_INSTALL_PREFIX@/BGMRPC/interfaces
+root=@BGMRPC_REMOTE@
+bin=@BGMRPC_REMOTE@/bin
+etc=@BGMRPC_REMOTE@/@CMAKE_INSTALL_DATADIR@/etc
+installDir=@BGMRPC_REMOTE@
+interfaces=@BGMRPC_REMOTE@/interfaces
