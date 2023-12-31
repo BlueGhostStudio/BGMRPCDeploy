@@ -1,1 +1,1 @@
-path=@CMAKE_INSTALL_PREFIX@/BGMRPC/JsModules
+path=@BGMRPC_REMOTE@/JsModules

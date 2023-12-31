@@ -1,11 +1,13 @@
 {
     "JS": {
+        "IF": "JsPlugin2",
         "src": {
             "opt": "-j",
             "hasArg": true
         }
     },
     "PY": {
+        "IF": "PyPlugin",
         "src": {
             "opt": "-S",
             "hasArg": true
